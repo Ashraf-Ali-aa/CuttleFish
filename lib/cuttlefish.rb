@@ -5,19 +5,18 @@ require 'require_all'
 require 'wally'
 require 'yaml'
 
+require_relative './lib/results/parse_test_results'
+require_relative './lib/results/push_test_results'
+require_relative './lib/run_tests'
+require_relative './lib/scan/scan_features'
+require_relative './lib/testrail/add_tests_to_sections'
+require_relative './lib/testrail/clean_parent_section'
+require_relative './lib/testrail/create_run'
+require_relative './lib/testrail/create_sections'
+require_relative './lib/testrail/get_sections'
+require_relative './lib/testrail/observer'
 require_relative './lib/testrail/testrail_request'
 require_relative './lib/testrail/testrail'
-
-require_relative './lib/run_tests'
-require_relative './lib/observer'
-require_relative './lib/scan_features'
-require_relative './lib/get_sections'
-require_relative './lib/create_sections'
-require_relative './lib/add_tests_to_sections'
-require_relative './lib/create_run'
-require_relative './lib/clean_parent_section'
-require_relative './lib/parse_test_results'
-require_relative './lib/push_test_results'
 
 class CuttleFish
   def initialize(type, tag = nil)
@@ -32,7 +31,7 @@ class CuttleFish
     Observer.features
   end
 
-  def set_milestone(milestone)
+  def set_milestone=(milestone)
     Observer.set_milestone = milestone
   end
 

@@ -1,0 +1,21 @@
+
+class CreateRun < RailRequest
+  def params
+    tag = Observer.tag.reverse.chop.reverse
+    milestone = Observer.milestone || '4.0'
+
+    {
+      'name'        => 'Automated: ' + milestone + ', ' + tag.upcase + ' | ' + Time.now.strftime('%d/%m/%Y %H:%M'),
+      'description' => tag.tr('_', ' ').capitalize + ' run',
+      'assign_to'   => 1,
+      'include_all' => false,
+      'case_ids'    => Observer.cases_ids,
+      'suite_id'    => @suite_id
+    }
+  end
+
+  def perform
+    run = @client.send_post("add_run/#{@project_id}", params)
+    Observer.set_run_id = run['id']
+  end
+end
