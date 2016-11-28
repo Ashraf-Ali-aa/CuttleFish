@@ -1,5 +1,6 @@
 base_url: https://sktrials.testrail.net/
 user: ali
+password:
 
 project_id: 25
 suite_id: 1573
