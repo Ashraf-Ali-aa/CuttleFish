@@ -3,7 +3,7 @@ class CreateSections < RailRequest
     {
       'name'        => @feature_name,
       'description' => @feature_description,
-      'parent_id'   => @automation_section_id,
+      'parent_id'   => @section_id,
       'suite_id'    => @suite_id
     }
   end

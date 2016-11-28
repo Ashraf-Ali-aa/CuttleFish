@@ -20,6 +20,6 @@ class PushTestResults < RailRequest
     results_params = { 'results' => @test_results }
     @client.send_post("add_results_for_cases/#{Observer.run_id}", results_params)
 
-    puts " << SUCCESS: Test results for #{Observer.tag} run pushed to TestRail!!! -;) >> "
+    puts " << SUCCESS: Test results for #{Observer.tag} run pushed to TestRail >> "
   end
 end

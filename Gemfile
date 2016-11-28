@@ -1,9 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'cucumber'
-gem 'encryptor'
 gem 'json'
-gem 'nokogiri', '1.6.0'
+gem 'nokogiri'
 gem 'pry'
 gem 'require_all'
 gem 'rest-client'

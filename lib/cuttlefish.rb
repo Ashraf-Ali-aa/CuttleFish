@@ -1,4 +1,3 @@
-require 'encryptor'
 require 'nokogiri'
 require 'pry'
 require 'require_all'
@@ -7,7 +6,6 @@ require 'yaml'
 
 require_relative './lib/results/parse_test_results'
 require_relative './lib/results/push_test_results'
-require_relative './lib/run_tests'
 require_relative './lib/scan/scan_features'
 require_relative './lib/testrail/add_tests_to_sections'
 require_relative './lib/testrail/clean_parent_section'
@@ -17,10 +15,11 @@ require_relative './lib/testrail/get_sections'
 require_relative './lib/testrail/observer'
 require_relative './lib/testrail/testrail_request'
 require_relative './lib/testrail/testrail'
+require_relative './lib/tests/run_tests'
 
 class CuttleFish
   def initialize(type, tag = nil)
-    $project_path = File.expand_path('..')
+    $project_path = File.expand_path('../../')
 
     Observer.set_type = type
     Observer.set_tag  = tag
@@ -74,3 +73,9 @@ class CuttleFish
     PushTestResults.new.perform
   end
 end
+
+b = CuttleFish.new('phone', '@demo')
+b.set_milestone = '4.5'
+b.clean_parent_section
+b.create_sections
+b.add_tests_to_sections

@@ -28,7 +28,7 @@ class AddTestsToSections < RailRequest
         end
 
         test_case = @client.send_post("add_case/#{@created_section_id}", params)
-        Observer.add_case_id (test_case['id'])
+        Observer.add_case_id(test_case['id'])
         puts "Test Cases Added to section ##{@created_section_id} in TestRail"
       end
     end
