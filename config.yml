@@ -1,0 +1,9 @@
+base_url: https://sktrials.testrail.net/
+user: ali
+
+project_id: 25
+suite_id: 1573
+section_id: 19381
+new_suite: "CuttleFish Test"
+
+ignore_files:
