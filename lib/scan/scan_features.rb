@@ -15,12 +15,13 @@ class ScanFeatures
   def scan_feature_files
     Dir.glob(File.join(@features_path, @feature_name_pattern)).each do |feature_path|
       begin
-        gherkin = Wally::ParsesFeatures.new.parse(File.read(feature_path))
+        gherkin = PickledGherkin::ParsesFeatures.new.parse(feature_path)
         puts''
       rescue
         puts "Couldn't parse '#{feature_path}'"
         puts 'Contents:'
-        puts File.read(@feature_path)
+        puts File.read(feature_path)
+        puts '---'
       end
       @@features << { path: feature_path, gherkin: gherkin }
     end

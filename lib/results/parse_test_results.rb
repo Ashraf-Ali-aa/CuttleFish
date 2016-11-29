@@ -1,4 +1,4 @@
-class ParseTestResults < RailRequest
+class ParseTestResults < TestRailRequest
   def perform
     find_junit_report_files
     scan_junit_files

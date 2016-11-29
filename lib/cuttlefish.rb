@@ -1,25 +1,28 @@
 require 'nokogiri'
 require 'pry'
 require 'require_all'
-require 'wally'
 require 'yaml'
+require 'gherkin/parser'
 
-require_relative './lib/results/parse_test_results'
-require_relative './lib/results/push_test_results'
-require_relative './lib/scan/scan_features'
-require_relative './lib/testrail/add_tests_to_sections'
-require_relative './lib/testrail/clean_parent_section'
-require_relative './lib/testrail/create_run'
-require_relative './lib/testrail/create_sections'
-require_relative './lib/testrail/get_sections'
-require_relative './lib/testrail/observer'
-require_relative './lib/testrail/testrail_request'
-require_relative './lib/testrail/testrail'
-require_relative './lib/tests/run_tests'
+require_relative './testrail/testrail_request'
+
+require_relative './results/parse_test_results'
+require_relative './results/push_test_results'
+require_relative './scan/pickled_gherkin'
+require_relative './scan/scan_features'
+require_relative './testrail/add_tests_to_sections'
+require_relative './testrail/clean_parent_section'
+require_relative './testrail/create_run'
+require_relative './testrail/create_sections'
+require_relative './testrail/get_sections'
+require_relative './testrail/observer'
+
+require_relative './testrail/testrail'
+require_relative './tests/run_tests'
 
 class CuttleFish
   def initialize(type, tag = nil)
-    $project_path = File.expand_path('../../')
+    $project_path = File.expand_path('../')
 
     Observer.set_type = type
     Observer.set_tag  = tag
@@ -61,6 +64,10 @@ class CuttleFish
     CleanParentSection.new.perform
   end
 
+  def clean_all_sections
+    CleanParentSection.new.clean_all
+  end
+
   def run_tests(run_option = '')
     RunTests.new.perform run_option
   end
@@ -74,8 +81,9 @@ class CuttleFish
   end
 end
 
-b = CuttleFish.new('phone', '@demo')
+b = CuttleFish.new('phone')
 b.set_milestone = '4.5'
 b.clean_parent_section
-b.create_sections
-b.add_tests_to_sections
+# b.create_run
+# b.create_sections
+# b.add_tests_to_sections

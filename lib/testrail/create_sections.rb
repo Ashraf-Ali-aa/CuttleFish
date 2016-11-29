@@ -1,4 +1,4 @@
-class CreateSections < RailRequest
+class CreateSections < TestRailRequest
   def params
     {
       'name'        => @feature_name,

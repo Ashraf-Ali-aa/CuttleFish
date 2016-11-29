@@ -1,5 +1,5 @@
 
-class PushTestResults < RailRequest
+class PushTestResults < TestRailRequest
   def save_result
     {
       'case_id'   => @case_result[0],

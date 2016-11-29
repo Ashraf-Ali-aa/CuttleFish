@@ -1,5 +1,5 @@
 
-class CreateRun < RailRequest
+class CreateRun < TestRailRequest
   def params
     tag = Observer.tag.reverse.chop.reverse
     milestone = Observer.milestone || '4.0'

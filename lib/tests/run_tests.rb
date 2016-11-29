@@ -1,4 +1,4 @@
-class RunTests < RailRequest
+class RunTests < TestRailRequest
   def perform(_run_option = '')
     case Observer.type
     when 'ios'

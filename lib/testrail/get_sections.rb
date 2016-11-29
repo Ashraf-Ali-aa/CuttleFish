@@ -1,4 +1,4 @@
-class GetSections < RailRequest
+class GetSections < TestRailRequest
   def set_suite_id(suite_id)
     @suite_id = suite_id
   end

@@ -1,4 +1,4 @@
-class AddTestsToSections < RailRequest
+class AddTestsToSections < TestRailRequest
   def params
     {
       'title'           => @scenario_name,
