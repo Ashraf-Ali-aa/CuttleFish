@@ -3,6 +3,7 @@ require 'pry'
 require 'require_all'
 require 'yaml'
 require 'gherkin/parser'
+require 'pp'
 
 require_relative './testrail/testrail_request'
 
@@ -81,9 +82,9 @@ class CuttleFish
   end
 end
 
-b = CuttleFish.new('phone')
+b = CuttleFish.new('phone', '@wip')
 b.set_milestone = '4.5'
-b.clean_parent_section
+# b.clean_parent_section
 # b.create_run
 # b.create_sections
 # b.add_tests_to_sections

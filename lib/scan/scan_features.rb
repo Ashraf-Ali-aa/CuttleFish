@@ -9,7 +9,7 @@ class ScanFeatures
 
   def perform
     scan_feature_files
-    scan_by_tag
+    # scan_by_tag
   end
 
   def scan_feature_files
@@ -23,7 +23,7 @@ class ScanFeatures
         puts File.read(feature_path)
         puts '---'
       end
-      @@features << { path: feature_path, gherkin: gherkin }
+      pp @@features << { path: feature_path, gherkin: gherkin }
     end
   end
 
@@ -40,6 +40,7 @@ class ScanFeatures
   end
 
   def scan_ff_for_tag(feature)
+    puts feature[:gherkin][:feature][:tags][:name]
     if feature[:gherkin]['tags']
       feature[:gherkin]['tags'].each do |tag|
         next unless tag['name'] == Observer.tag
